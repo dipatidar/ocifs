@@ -23,6 +23,9 @@ jobs:
         mkdir ~/.oci
         echo $OCIFS_CONFIG >> ~/.oci/config
         echo $OCIFS_PEM_KEY >> ~/.oci/oci_api_key.pem
+        export OCIFS_TEST_NAMESPACE=$OCIFS_TEST_NAMESPACE
+        export OCIFS_TEST_BUCKET=$OCIFS_TEST_BUCKET
+        export OCIFS_TEST_SECURITY_TOKEN_PROFILE=$OCIFS_TEST_SECURITY_TOKEN_PROFILE
     - name: Lint with flake8
       run: |
         conda install flake8
