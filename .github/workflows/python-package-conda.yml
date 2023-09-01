@@ -18,6 +18,11 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
+    - name: Setup Config
+      run: |
+        mkdir ~/.oci
+        echo $OCIFS_CONFIG >> ~/.oci/config
+        echo $OCIFS_PEM_KEY >> ~/.oci/oci_api_key.pem
     - name: Lint with flake8
       run: |
         conda install flake8
