@@ -18,11 +18,6 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: Setup Config
-      run: |
-        mkdir ~/.oci
-        echo $OCIFS_CONFIG >> ~/.oci/config
-        echo $OCIFS_PEM_KEY >> ~/.oci/oci_api_key.pem
     - name: Lint with flake8
       run: |
         conda install flake8
@@ -34,6 +29,9 @@ jobs:
       run: |
         conda install pytest
         pip install oci-cli oci fsspec  pandas>=1.2
+        mkdir ~/.oci
+        echo $OCIFS_CONFIG >> ~/.oci/config
+        echo $OCIFS_PEM_KEY >> ~/.oci/oci_api_key.pem
         export OCIFS_TEST_NAMESPACE=$OCIFS_TEST_NAMESPACE
         export OCIFS_TEST_BUCKET=$OCIFS_TEST_BUCKET
         export OCIFS_TEST_SECURITY_TOKEN_PROFILE=$OCIFS_TEST_SECURITY_TOKEN_PROFILE
