@@ -28,4 +28,6 @@ jobs:
     - name: Test with pytest
       run: |
         conda install pytest
+        conda install oci
+        conda install fsspec
         pytest
