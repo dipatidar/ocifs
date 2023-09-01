@@ -29,9 +29,17 @@ jobs:
       run: |
         conda install pytest
         pip install oci-cli oci fsspec  pandas>=1.2
+        
         mkdir ~/.oci
-        echo ${{secrets.OCIFS_CONFIG}} >> ~/.oci/config
-        echo ${{secrets.OCIFS_PEM_KEY}} >> ~/.oci/oci_api_key.pem
+        echo "[DEFAULT]" >> ~/.oci/config
+        echo "user=${{secrets.OCI_USER_OCID}}" >> ~/.oci/config
+        echo "fingerprint=${{secrets.OCI_FINGERPRINT}}" >> ~/.oci/config
+        echo "pass_phrase=${{secrets.OCI_PASSPHRASE}}" >> ~/.oci/config
+        echo "region=${{secrets.OCI_REGION}}" >> ~/.oci/config
+        echo "tenancy=${{secrets.OCI_TENANCY_OCID}}" >> ~/.oci/config
+        echo "key_file=~/.oci/key.pem" >> ~/.oci/config
+        echo "${{secrets.OCIFS_PEM_KEY}}" >> ~/.oci/key.pem
+
         export OCIFS_TEST_NAMESPACE=${{secrets.OCIFS_TEST_NAMESPACE}}
         export OCIFS_TEST_BUCKET=${{secrets.OCIFS_TEST_BUCKET}}
         export OCIFS_TEST_SECURITY_TOKEN_PROFILE=${{secrets.OCIFS_TEST_SECURITY_TOKEN_PROFILE}}
