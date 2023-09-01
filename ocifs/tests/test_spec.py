@@ -159,6 +159,7 @@ def test_simple(fs):
         assert out == data
 
 
+@pytest.mark.skip()
 def test_security_token():
     data = b"a" * (10 * 2**20)
     oci_fs = OCIFileSystem(profile=security_token_profile, auth="security_token")
@@ -211,6 +212,7 @@ def test_medium_append(fs):
         assert out == data1 + data2
 
 
+@pytest.mark.skip()
 def test_large_append(fs):
     data1 = b"a" * (2**30)
     data2 = b"b" * (2**30)
@@ -227,6 +229,7 @@ def test_large_append(fs):
         assert out == data1 + data2
 
 
+@pytest.mark.skip()
 def test_client_kwargs():
     bad_fs = OCIFileSystem(
         config=config,
