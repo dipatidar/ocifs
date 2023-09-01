@@ -33,6 +33,5 @@ jobs:
     - name: Test with pytest
       run: |
         conda install pytest
-        pip install oci
-        pip install fsspec
+        pip install oci-cli oci fsspec  pandas>=1.2
         pytest
